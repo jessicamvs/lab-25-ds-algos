@@ -44,7 +44,23 @@ describe('algorithms', function() {
     it('should return true if number is in array', function() {
       expect(algos.binarySearch([1,4,6,8], 4)).to.equal(true);
     });
-
   });
 
+  describe('#iterativeBinarySearch', function() {
+    it('should return Error if arr is not provided', function() {
+      expect(algos.iterativeBinarySearch()).to.equal(Error);
+    });
+
+    it('should return false if array is empty', function() {
+      expect(algos.iterativeBinarySearch([], 6)).to.equal(false);
+    });
+
+    it('should return false if number is not in array', function() {
+      expect(algos.iterativeBinarySearch([5,8,10,12], 7)).to.equal(false);
+    });
+
+    it('should return true if number is in array', function() {
+      expect(algos.iterativeBinarySearch([1,4,6,8], 4)).to.equal(true);
+    });
+  });
 });
