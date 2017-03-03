@@ -2,7 +2,9 @@ const algos = module.exports = {};
 
 algos.mergeSort = function(arr) {
   if(!Array.isArray(arr) || !arr.length) return Error;
+
   if(arr.length < 2) return arr;
+
   let mid = Math.floor(arr.length/2);
 
   let left = algos.mergeSort(arr.slice(0, mid));
@@ -44,12 +46,31 @@ algos.binarySearch = function(arr, num) {
   if(arr[mid] === num) {
     return true;
   }
-
   if(arr[mid] < num) {
     return algos.binarySearch(arr.slice(mid+1, arr.length), num);
   }
-
   if(arr[mid] > num) {
     return algos.binarySearch(arr.slice(0, mid), num);
   }
+};
+
+algos.iterativeBinarySearch = function(arr, num) {
+  if(!Array.isArray(arr)) return Error;
+
+  let newArr = arr;
+  let mid = Math.floor(newArr.length/2);
+
+  while(newArr[mid] !== num && newArr.length) {
+    if(newArr[mid] < num) {
+      newArr = newArr.slice(mid+1, newArr.length);
+    }
+    if(newArr[mid] > num) {
+      newArr = newArr.slice(0, mid);
+    }
+    mid = Math.floor(newArr.length/2);
+  }
+
+  if(!newArr.length) return false;
+
+  return true;
 };
